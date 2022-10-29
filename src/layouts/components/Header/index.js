@@ -13,16 +13,17 @@ import {
     faSignOut,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import 'tippy.js/dist/tippy.css'
+import 'tippy.js/dist/tippy.css';
 
 import Button from '~/components/Button';
+import config from '~/config';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Menu from '~/components/Proper/Menu';
 import { MessageIcon, SearchIcon, UploadIcon, InboxIcon } from '~/components/icons';
-import Image from '~/components/Image'
+import Image from '~/components/Image';
 import Search from '../Search';
-
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -57,7 +58,7 @@ const MENU_ITEMS = [
     },
 ];
 
-const userMenu =[
+const userMenu = [
     {
         icon: <FontAwesomeIcon icon={faUser} />,
         title: 'View profile',
@@ -80,11 +81,8 @@ const userMenu =[
         to: '/logout',
         separate: true,
     },
-]
+];
 function Header() {
-
-   
-
     //Handle logic
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
@@ -100,28 +98,30 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <img src={images.logo} alt="tiktok"></img>
-               <Search/>
+                <Link to={config.routes.home} className={cx('logo')}>
+                    <img src={images.logo} alt="tiktok"></img>
+                </Link>
+                <Search />
 
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>
-                            <Tippy content='Upload video' placement='bottom'>
+                            <Tippy content="Upload video" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <UploadIcon/>
+                                    <UploadIcon />
                                 </button>
                             </Tippy>
-                            <Tippy content='Message'>
+                            <Tippy content="Message">
                                 <button className={cx('action-btn')}>
-                                    <MessageIcon/>
+                                    <MessageIcon />
                                 </button>
                             </Tippy>
-                            {/* <Tippy delay={[0, 50]} content="Inbox" placement="bottom">
+                            <Tippy delay={[0, 50]} content="Inbox" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <InboxIcon/>
+                                    <InboxIcon />
                                     <span className={cx('badge')}>12</span>
                                 </button>
-                            </Tippy> */}
+                            </Tippy>
                         </>
                     ) : (
                         <>
