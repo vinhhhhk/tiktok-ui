@@ -20,7 +20,7 @@ import config from '~/config';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Menu from '~/components/Proper/Menu';
-import { MessageIcon, SearchIcon, UploadIcon, InboxIcon } from '~/components/icons';
+import { MessageIcon, SearchIcon, UploadIcon, InboxIcon } from '~/components/Icons';
 import Image from '~/components/Image';
 import Search from '../Search';
 import { Link } from 'react-router-dom';

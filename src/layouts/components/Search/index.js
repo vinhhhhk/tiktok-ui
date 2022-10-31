@@ -6,7 +6,7 @@ import { useDebouce } from '~/hooks';
 
 import  * as searchServices  from '~/services/searchService';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { SearchIcon } from '~/components/icons';
+import { SearchIcon } from '~/components/Icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import styles from './Search.module.scss';
@@ -44,8 +44,6 @@ function Search() {
 
     }
 
-
-
     useEffect(() => {
         if (!debouncedValue.trim()) {
             setSearchResult([]);
@@ -55,6 +53,7 @@ function Search() {
         const fetchApi = async () => {
             setLoading(true);
             const result= await searchServices.search(debouncedValue);
+
             setSearchResult(result)
             setLoading(false);
 
@@ -72,7 +71,9 @@ function Search() {
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                         <ProperWrapper>
                             <h4 className={cx('search-title')}>Accounts</h4>
-                            
+                            {searchResult.map((result) => (
+                                <AccountItem key={result.id} data={result} />
+                            ))}
                         </ProperWrapper>
                     </div>
                 )}
